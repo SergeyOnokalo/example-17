@@ -164,6 +164,7 @@ body{
         @include border("border", 2.4, solid, #0055BE);
         -webkit-appearance: none;
         background: #005CC4;
+        cursor: pointer;
     }
     .body__range-input::-moz-range-progress {
         background-color: #1E32F0; 
