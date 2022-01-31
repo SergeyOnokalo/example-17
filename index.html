@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="shortcut icon" href="" type="image/svg"> -->
+</head>
+<body>
+
+  <section class="main__body">
+    <div class="container">
+      <div class="body__wrapper">
+        <div class="title">
+          <h1 class="h1">Калькулятор доходов и расходов</h1>
+        </div>
+        <div class="body__inner">
+          <div class="body__inputs">
+            <div class="body__inputs-income">
+              <input placeholder="Продажа автомобилей" id="salari" class="body__input" type="number">
+              <input placeholder="Сдача автомобиля в аренду" id="freelance" class="body__input" type="number">
+              <input placeholder="Сервисный центр" id="extra-1" class="body__input" type="number">
+              <input placeholder="Остальная прибыль" id="extra-2" class="body__input" type="number">
+            </div>
+            <div class="body__inputs-expenses">
+              <input placeholder="Аренда помещений" id="flat" class="body__input" type="number">
+              <input placeholder="Зарплата сотрудников" id="house-services" class="body__input" type="number">
+              <input placeholder="Ремонт автомобилей" id="transport" class="body__input" type="number">
+              <input placeholder="Покупка новых автомобилей" id="credit" class="body__input" type="number">
+            </div>
+          </div>
+          <div class="body__free">
+            <div class="body__free-number">
+              Доступно в месяц (без копилки):
+              <br><span id="mount-1">0</span>
+            </div>
+            <div class="body__free-number">
+              Доступно в месяц:
+              <br><span id="mount-2">0</span>
+            </div>
+            <div class="body__free-number">
+              Доступно в день:
+              <br><span id="day">0</span>
+            </div>
+            <div class="body__free-number">
+              Копим:
+              <br><span id="save-year">0</span>
+            </div>
+            <div class="body__free-number">
+              Накопим за год:
+              <br><span id="save-mount">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="body__range">
+          <div class="label">Копим:</div><br>
+          <input id="range" class="body__range-input" type="range" min="0" max="100" value="0" disabled>
+          <br><span id="range-2" class="body__range-number">0</span><span class="body__range-number">%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script> 
+</body>
+</html>
