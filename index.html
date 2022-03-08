@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="shortcut icon" href="" type="image/svg"> -->
+</head>
+<body>
+
+  <section class="header">
+    <div class="container">
+      <h1 class="h1">
+        Подсчет расходов и доходов при продаже автомобилей
+      </h1>
+    </div>
+  </section>
+
+  <section class="calculator">
+    <div class="container">
+      <div class="calc__body">
+        <div class="calc__body-left">
+          <div class="calc__body-title">
+            Закупочная стоимость автомобиля
+          </div>
+          <div class="calc__body-wrapper">
+            <div class="calc__body-items">
+              <div class="calc__body-item">
+                <div class="calc__body-item-title">
+                  Изначальная стоимость авто
+                </div>
+                <input id="priceCar1" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-title calc__body-item-title-p">
+                  Внешний вид
+                </div>
+                <div class="calc__body-item-subtitle">
+                  Индивидуальный вариант окраски кузова
+                </div>
+                <input id="priceCar2" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Диски
+                </div>
+                <input id="priceCar3" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Фары
+                </div>
+                <input id="priceCar4" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Задние фонари
+                </div>
+                <input id="priceCar5" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Дизайн интерьера
+                </div>
+                <input id="priceCar6" class="calc__body-item-input input-value" type="number"> 
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Сидения
+                </div>
+                <input id="priceCar7" class="calc__body-item-input input-value" type="number">
+              </div>
+              <div class="calc__body-item">
+                <div class="calc__body-item-subtitle">
+                  Руль
+                </div>
+                <input id="priceCar8" class="calc__body-item-input input-value" type="number">
+              </div>
+            </div>
+            <div class="calc__body-items">
+              <div class="calc__body-item">
+                <div class="calc__body-item-title">
+                  Наценка в %
+                </div>
+                <input id="extraCharge1" class="calc__body-item-input calc__body-item-input-short calc__body-item-input-short-p-n input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge2" class="calc__body-item-input calc__body-item-input-short calc__body-item-input-short-p-h input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge3" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge4" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge5" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge6" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge7" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+              <div class="calc__body-item">
+                <input id="extraCharge8" class="calc__body-item-input calc__body-item-input-short input-value" type="number" value="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="calc__body-right">
+          <div class="calc__body-title">
+            Кредит на  автомобиль
+          </div>
+          <div class="calc__body-item">
+            <div class="calc__body-item-title">
+              Сумма кредита
+            </div>
+            <input id="summa" class="calc__body-item-input input-value" type="number" disabled>
+          </div>
+          <div class="calc__body-item">
+            <div class="calc__body-item-title">
+              Срок в месяцах
+            </div>
+            <input id="period" class="calc__body-item-input input-value" type="number">
+          </div>
+          <div class="calc__body-item">
+            <div class="calc__body-item-title">
+              Ставка в %
+            </div>
+            <input id="rate" class="calc__body-item-input calc__body-item-input-short-0 input-value" type="number">
+          </div>
+          <div class="calc__body-item">
+            <div class="calc__body-item-title">
+              Платеж в
+            </div>
+            <div class="calc__body-item-btn-wrapper">
+              <button class="calc__body-item-btn calc__body-item-btn--active">Месяц</button>
+              <button class="calc__body-item-btn">Год</button>
+            </div>
+            <div id="ann" class="calc__body-item-input">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="header">
+    <div class="container">
+      <h1 class="h1">
+        Расходы и доходы автосалона, финальная стоимость автомобиля  
+      </h1>
+    </div>
+  </section>
+
+  <section class="table">
+    <div class="container">
+      <div class="table__wrapper">
+        <div class="table__item table__item-title">
+          <div class="table__item-part table__item-part-title">Наименование</div>
+          <div class="table__item-part table__item-part-title">Расходы </div>
+          <div class="table__item-part table__item-part-title">Доходы</div>
+        </div>
+        <div class="table__item table__item-subtitle">
+          <div class="table__item-part">Изначальная стоимость авто</div>
+          <div id="initialPriceCar" class="table__item-part">0</div>
+          <div id="totalPriceCar" class="table__item-part">0</div>
+        </div>
+        <div class="table__item table__item-subtitle">
+          <div class="table__item-part">Внешний вид</div>
+          <div id="initialPriceAppearance" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Индивидуальный вариант окраски кузова</div>
+          <div id="initialPriceAppearance2" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance2" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Диски</div>
+          <div id="initialPriceAppearance3" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance3" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Фары</div>
+          <div id="initialPriceAppearance4" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance4" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Задние фонари</div>
+          <div id="initialPriceAppearance5" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance5" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Дизайн интерьера</div>
+          <div id="initialPriceAppearance6" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance6" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Сидения</div>
+          <div id="initialPriceAppearance7" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance7" class="table__item-part">0</div>
+        </div>
+        <div class="table__item">
+          <div class="table__item-part">Руль</div>
+          <div id="initialPriceAppearance8" class="table__item-part">0 </div>
+          <div id="totalPriceAppearance8" class="table__item-part">0</div>
+        </div>
+        <div class="table__item table__item-subtitle">
+          <div class="table__item-part">Кредит </div>
+          <div id="initialPriceCredit" class="table__item-part">0 </div>
+          <div id="totalPriceCredit" class="table__item-part">0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script> 
+</body>
+</html>
