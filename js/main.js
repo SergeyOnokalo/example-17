@@ -1,64 +1,170 @@
-const iSalari = document.querySelector('#salari'),
-      iFreelance = document.querySelector('#freelance'),
-      iExtra1 = document.querySelector('#extra-1'),
-      iExtra2 = document.querySelector('#extra-2')
+const $priceCar1 = document.querySelector('#priceCar1'),
+      $priceCar3 = document.querySelector('#priceCar3'),
+      $priceCar4 = document.querySelector('#priceCar4'),
+      $priceCar5 = document.querySelector('#priceCar5'),
+      $priceCar2 = document.querySelector('#priceCar2'),
+      $priceCar6 = document.querySelector('#priceCar6'),
+      $priceCar7 = document.querySelector('#priceCar7'),
+      $priceCar8 = document.querySelector('#priceCar8')
 
-const cFlat = document.querySelector('#flat'),
-      cHouseServices = document.querySelector('#house-services'),
-      cTransport = document.querySelector('#transport'),
-      cCredit = document.querySelector('#credit')
+const $extraCharge1 = document.querySelector('#extraCharge1'),
+      $extraCharge2 = document.querySelector('#extraCharge2'),
+      $extraCharge3 = document.querySelector('#extraCharge3'),
+      $extraCharge4 = document.querySelector('#extraCharge4'),
+      $extraCharge5 = document.querySelector('#extraCharge5'),
+      $extraCharge6 = document.querySelector('#extraCharge6'),
+      $extraCharge7 = document.querySelector('#extraCharge7'),
+      $extraCharge8 = document.querySelector('#extraCharge8')
 
-const tMount1 = document.querySelector('#mount-1'),
-      tMount2 = document.querySelector('#mount-2'),
-      iDay = document.querySelector('#day'),
-      iSaveYear = document.querySelector('#save-year'),
-      iSaveMount = document.querySelector('#save-mount')
+const $initialPriceCar = document.querySelector('#initialPriceCar'),
+      $totalPriceCar = document.querySelector('#totalPriceCar'),
+      $initialPriceAppearance = document.querySelector('#initialPriceAppearance'),
+      $totalPriceAppearance = document.querySelector('#totalPriceAppearance'),
+      $initialPriceAppearance2 = document.querySelector('#initialPriceAppearance2'),
+      $totalPriceAppearance2 = document.querySelector('#totalPriceAppearance2'),
+      $initialPriceAppearance3 = document.querySelector('#initialPriceAppearance3'),
+      $totalPriceAppearance3 = document.querySelector('#totalPriceAppearance3'),
+      $initialPriceAppearance4 = document.querySelector('#initialPriceAppearance4'),
+      $totalPriceAppearance4 = document.querySelector('#totalPriceAppearance4'),
+      $initialPriceAppearance5 = document.querySelector('#initialPriceAppearance5'),
+      $totalPriceAppearance5 = document.querySelector('#totalPriceAppearance5'),
+      $initialPriceAppearance6 = document.querySelector('#initialPriceAppearance6'),
+      $totalPriceAppearance6 = document.querySelector('#totalPriceAppearance6'),
+      $initialPriceAppearance7 = document.querySelector('#initialPriceAppearance7'),
+      $totalPriceAppearance7 = document.querySelector('#totalPriceAppearance7'),
+      $initialPriceAppearance8 = document.querySelector('#initialPriceAppearance8'),
+      $totalPriceAppearance8 = document.querySelector('#totalPriceAppearance8'),
+      $initialPriceCredit = document.querySelector('#initialPriceCredit'),
+      $totalPriceCredit = document.querySelector('#totalPriceCredit')
 
-const _range = document.querySelector('#range'),
-      _range2 = document.querySelector('#range-2')
+const $summa = document.querySelector('#summa'),
+      $period = document.querySelector('#period'),
+      $rate = document.querySelector('#rate'),
+      $ann = document.querySelector('#ann')
 
-Date.prototype.daysInMonth = function() {
-  return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
-};
-const daysInMonth = new Date().daysInMonth()
+const $inputValue = document.querySelectorAll('.input-value')
 
-let _tMount1, _tMount2, _iDay, _iSaveYear, _iSaveMount = 0
-let totalPrecents = 0
+let _initialPriceCar = 0, 
+    _totalPriceCar = 0,
+    _initialPriceAppearance = 0,
+    _totalPriceAppearance = 0,
+    _initialPriceAppearance2 = 0,
+    _totalPriceAppearance2 = 0,
+    _initialPriceAppearance3 = 0,
+    _totalPriceAppearance3 = 0,
+    _initialPriceAppearance4 = 0,
+    _totalPriceAppearance4 = 0,
+    _initialPriceAppearance5 = 0,
+    _totalPriceAppearance5 = 0,
+    _initialPriceAppearance6 = 0,
+    _totalPriceAppearance6 = 0,
+    _initialPriceAppearance7 = 0,
+    _totalPriceAppearance7 = 0,
+    _initialPriceAppearance8 = 0,
+    _totalPriceAppearance8 = 0,
+    _initialPriceCredit = 0,
+    _totalPriceCredit = 0
 
-const inupts = document.querySelectorAll('.body__input')
-for(e of inupts) {
-  e.addEventListener('input', () => {
-    countingAvailableMoney()
-    calcPrecents()
-    if(_range.hasAttribute('disabled') === true){
-      _range.removeAttribute('disabled')
-    }
+let summa = 0,
+    period = 0,
+    rate = 0,
+    monthRate = 0,
+    ann = 0
+
+// Event listener 'input'
+for(input of $inputValue) {
+  input.addEventListener('input', () => {
+    calcExtraCharge()
+    calcAnn()
   })
 }
 
+// 1000000 = 1 000 000
+const addSpace = value => {
+  let item = [String(value)]
+  for (var s of item) {
+    let [_, num, suffix] = s.match(/^(.*?)((?:[,.]\d+)?|)$/)
+    return `${num.replace(/\B(?=(?:\d{3})*$)/g, ' ')}${suffix}`
+  }
+}
+
+// Parse str to num
 const strToNum = str => str.value ? parseInt(str.value) : 0
 
-const countingAvailableMoney = () => {
-  const totalPerMomey = strToNum(iFreelance) + strToNum(iExtra1) + strToNum(iExtra2) + strToNum(iSalari)
-  const totalCosts = strToNum(cHouseServices) + strToNum(cTransport) + strToNum(cFlat) + strToNum(cCredit) 
-  _tMount1 = totalPerMomey - totalCosts
-  tMount1.innerHTML = _tMount1
+//Calclates %
+const calcPercent = (price, percent) => {
+  return +(strToNum(price) + (strToNum(price) / 100 * strToNum(percent))).toFixed()
+}
+const calcPercent2 = (price, percent) => {
+  return +(strToNum(price) / 100 * strToNum(percent)).toFixed()
 }
 
-_range.addEventListener('input', e => {
-  totalPrecents = e.target.value
-  _range2.innerHTML = totalPrecents
-  calcPrecents()
-})
 
-const calcPrecents = () => {
-  _iSaveYear = ((_tMount1 * totalPrecents) / 100).toFixed(2)
-  _tMount2 = (_tMount1 - _iSaveYear).toFixed(2)
-  _iDay = (_tMount2 / daysInMonth).toFixed(2)
-  _iSaveMount = (_iSaveYear * 12).toFixed(2)
+// Calculates the price of the car, appearance
+const calcExtraCharge = () => {
+  _initialPriceCar = strToNum($priceCar1)
+  _initialPriceAppearance = strToNum($priceCar2) + strToNum($priceCar3) + strToNum($priceCar4) + strToNum($priceCar5) + strToNum($priceCar6) + strToNum($priceCar7) + strToNum($priceCar8)
+  _initialPriceAppearance2 = strToNum($priceCar2)
+  _initialPriceAppearance3 = strToNum($priceCar3)
+  _initialPriceAppearance4 = strToNum($priceCar4)
+  _initialPriceAppearance5 = strToNum($priceCar5)
+  _initialPriceAppearance6 = strToNum($priceCar6)
+  _initialPriceAppearance7 = strToNum($priceCar7)
+  _initialPriceAppearance8 = strToNum($priceCar8)
 
-  iSaveYear.innerHTML = _iSaveYear
-  tMount2.innerHTML = _tMount2
-  iDay.innerHTML = _iDay
-  iSaveMount.innerHTML = _iSaveMount
+  _totalPriceCar = calcPercent($priceCar1,$extraCharge1)
+  _totalPriceAppearance = calcPercent($priceCar2,$extraCharge2) + calcPercent($priceCar3,$extraCharge3) + calcPercent($priceCar4,$extraCharge4) + calcPercent($priceCar5,$extraCharge5) + calcPercent($priceCar6,$extraCharge6) + calcPercent($priceCar7,$extraCharge7) + calcPercent($priceCar8,$extraCharge8)
+  _totalPriceAppearance2 = calcPercent($priceCar2,$extraCharge2)
+  _totalPriceAppearance3 = calcPercent($priceCar3,$extraCharge3)
+  _totalPriceAppearance4 = calcPercent($priceCar4,$extraCharge4)
+  _totalPriceAppearance5 = calcPercent($priceCar5,$extraCharge5)
+  _totalPriceAppearance6 = calcPercent($priceCar6,$extraCharge6)
+  _totalPriceAppearance7 = calcPercent($priceCar7,$extraCharge7)
+  _totalPriceAppearance8 = calcPercent($priceCar8,$extraCharge8)
+
+  $initialPriceCar.innerHTML = addSpace(_initialPriceCar)
+  $initialPriceAppearance.innerHTML = addSpace(_initialPriceAppearance)
+  $initialPriceAppearance2.innerHTML = addSpace(_initialPriceAppearance2)
+  $initialPriceAppearance3.innerHTML = addSpace(_initialPriceAppearance3)
+  $initialPriceAppearance4.innerHTML = addSpace(_initialPriceAppearance4)
+  $initialPriceAppearance5.innerHTML = addSpace(_initialPriceAppearance5)
+  $initialPriceAppearance6.innerHTML = addSpace(_initialPriceAppearance6)
+  $initialPriceAppearance7.innerHTML = addSpace(_initialPriceAppearance7)
+  $initialPriceAppearance8.innerHTML = addSpace(_initialPriceAppearance8)
+
+  $totalPriceCar.innerHTML = addSpace(_totalPriceCar)
+  $totalPriceAppearance.innerHTML = addSpace(_totalPriceAppearance)
+  $totalPriceAppearance2.innerHTML = addSpace(_totalPriceAppearance2)
+  $totalPriceAppearance3.innerHTML = addSpace(_totalPriceAppearance3)
+  $totalPriceAppearance4.innerHTML = addSpace(_totalPriceAppearance4)
+  $totalPriceAppearance5.innerHTML = addSpace(_totalPriceAppearance5)
+  $totalPriceAppearance6.innerHTML = addSpace(_totalPriceAppearance6)
+  $totalPriceAppearance7.innerHTML = addSpace(_totalPriceAppearance7)
+  $totalPriceAppearance8.innerHTML = addSpace(_totalPriceAppearance8)
+
+  $summa.value = _totalPriceCar + _totalPriceAppearance
 }
+
+const checkAnn = a => isNaN(a) ? ann = 0 : ann = a
+
+const calcAnn = () => {
+  summa = strToNum($summa)
+  period = strToNum($period)
+  rate = strToNum($rate)
+  monthRate = rate / (100 * 12),
+
+  ann = +(summa * (monthRate / (1 - Math.pow((1 + monthRate), -period)))).toFixed()
+
+  checkAnn(ann)
+
+  $ann.innerHTML = addSpace(ann)
+
+  _initialPriceCredit = summa
+  _totalPriceCredit = period * ann
+
+  $initialPriceCredit.innerHTML = addSpace(_initialPriceCredit)
+  $totalPriceCredit.innerHTML = addSpace(_totalPriceCredit)
+}
+
+
+
