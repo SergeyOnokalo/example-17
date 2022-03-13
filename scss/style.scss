@@ -63,6 +63,7 @@ body{
   @include a-v("padding-bottom", 30);
   background-color: #5386FF;
 }
+
 .h1 {
   @include a-v("font-size", 36);
   @include a-v("line-height", 36);
@@ -70,6 +71,11 @@ body{
   font-family: 'Roboto-Medium';
   font-weight: 500;
 }
+
+.input-value:disabled{
+  background-color: #fff;
+}
+
 .calc {
   &__body {
     @include a-v("padding-top", 30);
@@ -175,6 +181,11 @@ body{
     box-sizing:border-box;
     background-color: #fff;
     cursor: pointer;
+    transition: all .15s;
+  }
+
+  &__body-item-btn-mb {
+    @include a-v("margin-bottom", 20);
   }
 
   &__body-item-btn + &__body-item-btn{
@@ -224,16 +235,15 @@ body{
     width: 33.333333%;
   }
 
-  &__item-title{
+  &__item-title {
     @include border("border-bottom", 2, solid, #5386FF);
-  }
-
-  &__item-subtitle{
+    @include a-v("font-size", 26);
+    @include a-v("line-height", 26);
     font-family: 'Roboto-Medium';
     font-weight: 500;
   }
-
-  &__item-part-title{
+  &__item-title2 {
+    @include border("border-top", 2, solid, #5386FF);
     @include a-v("font-size", 26);
     @include a-v("line-height", 26);
     font-family: 'Roboto-Medium';
