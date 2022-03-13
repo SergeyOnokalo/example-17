@@ -35,12 +35,19 @@ const $initialPriceCar = document.querySelector('#initialPriceCar'),
       $initialPriceAppearance8 = document.querySelector('#initialPriceAppearance8'),
       $totalPriceAppearance8 = document.querySelector('#totalPriceAppearance8'),
       $initialPriceCredit = document.querySelector('#initialPriceCredit'),
-      $totalPriceCredit = document.querySelector('#totalPriceCredit')
+      $totalPriceCredit = document.querySelector('#totalPriceCredit'),
+      $initialMainTotal = document.querySelector('#initialMainTotal'),
+      $totalMainTotal = document.querySelector('#totalMainTotal')
+
+const $creditBtnOnOff = document.querySelector('#creditBtnOnOff')
 
 const $summa = document.querySelector('#summa'),
       $period = document.querySelector('#period'),
       $rate = document.querySelector('#rate'),
       $ann = document.querySelector('#ann')
+
+const $btnMonth = document.querySelector('#btnMonth'),
+      $btnYear = document.querySelector('#btnYear')
 
 const $inputValue = document.querySelectorAll('.input-value')
 
@@ -63,7 +70,9 @@ let _initialPriceCar = 0,
     _initialPriceAppearance8 = 0,
     _totalPriceAppearance8 = 0,
     _initialPriceCredit = 0,
-    _totalPriceCredit = 0
+    _totalPriceCredit = 0,
+    _initialMainTotal = 0,
+    _totalMainTotal = 0
 
 let summa = 0,
     period = 0,
@@ -74,8 +83,9 @@ let summa = 0,
 // Event listener 'input'
 for(input of $inputValue) {
   input.addEventListener('input', () => {
-    calcExtraCharge()
+    calcPrice()
     calcAnn()
+    calcTotal()
   })
 }
 
@@ -89,19 +99,15 @@ const addSpace = value => {
 }
 
 // Parse str to num
-const strToNum = str => str.value ? parseInt(str.value) : 0
+const strToNum = str => str.value || str.innerHTML ? +(str.value) || +(str.innerHTML) : 0
 
 //Calclates %
 const calcPercent = (price, percent) => {
   return +(strToNum(price) + (strToNum(price) / 100 * strToNum(percent))).toFixed()
 }
-const calcPercent2 = (price, percent) => {
-  return +(strToNum(price) / 100 * strToNum(percent)).toFixed()
-}
-
 
 // Calculates the price of the car, appearance
-const calcExtraCharge = () => {
+const calcPrice = () => {
   _initialPriceCar = strToNum($priceCar1)
   _initialPriceAppearance = strToNum($priceCar2) + strToNum($priceCar3) + strToNum($priceCar4) + strToNum($priceCar5) + strToNum($priceCar6) + strToNum($priceCar7) + strToNum($priceCar8)
   _initialPriceAppearance2 = strToNum($priceCar2)
@@ -142,9 +148,27 @@ const calcExtraCharge = () => {
   $totalPriceAppearance7.innerHTML = addSpace(_totalPriceAppearance7)
   $totalPriceAppearance8.innerHTML = addSpace(_totalPriceAppearance8)
 
-  $summa.value = _totalPriceCar + _totalPriceAppearance
+  creditOnOff()
 }
 
+// Credit on off
+$creditBtnOnOff.addEventListener('click', () => {
+  $creditBtnOnOff.classList.toggle('calc__body-item-btn--active')
+  creditOnOff()
+})
+const creditOnOff = () => {
+  if ($creditBtnOnOff.classList.contains('calc__body-item-btn--active')) {
+    $summa.innerHTML = _totalPriceCar + _totalPriceAppearance
+    calcAnn()
+    calcTotal()
+  } else {
+    $summa.innerHTML = 0
+    calcAnn()
+    calcTotal()
+  }
+}
+
+// Annuity credit
 const checkAnn = a => isNaN(a) ? ann = 0 : ann = a
 
 const calcAnn = () => {
@@ -152,8 +176,11 @@ const calcAnn = () => {
   period = strToNum($period)
   rate = strToNum($rate)
   monthRate = rate / (100 * 12),
-
+  console.log(summa)
   ann = +(summa * (monthRate / (1 - Math.pow((1 + monthRate), -period)))).toFixed()
+
+  console.log(rate)
+  console.log(monthRate)
 
   checkAnn(ann)
 
@@ -164,7 +191,30 @@ const calcAnn = () => {
 
   $initialPriceCredit.innerHTML = addSpace(_initialPriceCredit)
   $totalPriceCredit.innerHTML = addSpace(_totalPriceCredit)
+
+  $btnYear.classList.remove('calc__body-item-btn--active')
+  $btnMonth.classList.add('calc__body-item-btn--active')
 }
 
+// Credit button listener 
+$btnMonth.addEventListener('click', () => {
+  $btnYear.classList.remove('calc__body-item-btn--active')
+  $btnMonth.classList.add('calc__body-item-btn--active')
 
+  $ann.innerHTML = addSpace(ann)
+})
+$btnYear.addEventListener('click', () => {
+  $btnMonth.classList.remove('calc__body-item-btn--active')
+  $btnYear.classList.add('calc__body-item-btn--active')
 
+  $ann.innerHTML = addSpace(ann * 12) 
+})
+
+// Output total price
+const calcTotal = () => {
+  _initialMainTotal = _initialPriceCar + _initialPriceAppearance + _initialPriceCredit
+  _totalMainTotal = _totalPriceCar + _totalPriceAppearance + _totalPriceCredit
+
+  $initialMainTotal.innerHTML = addSpace(_initialMainTotal)
+  $totalMainTotal.innerHTML = addSpace(_totalMainTotal)
+}
