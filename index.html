@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Calculator</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- <link rel="shortcut icon" href="" type="image/svg"> -->
 </head>
@@ -114,11 +114,15 @@
           <div class="calc__body-title">
             Кредит на  автомобиль
           </div>
+          <div class="">
+            <button id="creditBtnOnOff" class="calc__body-item-btn-mb calc__body-item-btn ">Автомобиль в кредит</button>
+          </div>
+          
           <div class="calc__body-item">
             <div class="calc__body-item-title">
               Сумма кредита
             </div>
-            <input id="summa" class="calc__body-item-input input-value" type="number" disabled>
+            <div id="summa" class="calc__body-item-input">0</div>
           </div>
           <div class="calc__body-item">
             <div class="calc__body-item-title">
@@ -137,8 +141,8 @@
               Платеж в
             </div>
             <div class="calc__body-item-btn-wrapper">
-              <button class="calc__body-item-btn calc__body-item-btn--active">Месяц</button>
-              <button class="calc__body-item-btn">Год</button>
+              <button id="btnMonth" class="calc__body-item-btn calc__body-item-btn--active">Месяц</button>
+              <button id="btnYear" class="calc__body-item-btn">Год</button>
             </div>
             <div id="ann" class="calc__body-item-input">0</div>
           </div>
@@ -159,16 +163,16 @@
     <div class="container">
       <div class="table__wrapper">
         <div class="table__item table__item-title">
-          <div class="table__item-part table__item-part-title">Наименование</div>
-          <div class="table__item-part table__item-part-title">Расходы </div>
-          <div class="table__item-part table__item-part-title">Доходы</div>
+          <div class="table__item-part">Наименование</div>
+          <div class="table__item-part">Расходы </div>
+          <div class="table__item-part">Доходы</div>
         </div>
-        <div class="table__item table__item-subtitle">
+        <div class="table__item table__item-title"> 
           <div class="table__item-part">Изначальная стоимость авто</div>
           <div id="initialPriceCar" class="table__item-part">0</div>
           <div id="totalPriceCar" class="table__item-part">0</div>
         </div>
-        <div class="table__item table__item-subtitle">
+        <div class="table__item table__item-title">
           <div class="table__item-part">Внешний вид</div>
           <div id="initialPriceAppearance" class="table__item-part">0 </div>
           <div id="totalPriceAppearance" class="table__item-part">0</div>
@@ -208,10 +212,15 @@
           <div id="initialPriceAppearance8" class="table__item-part">0 </div>
           <div id="totalPriceAppearance8" class="table__item-part">0</div>
         </div>
-        <div class="table__item table__item-subtitle">
+        <div class="table__item table__item-title2">
           <div class="table__item-part">Кредит </div>
           <div id="initialPriceCredit" class="table__item-part">0 </div>
           <div id="totalPriceCredit" class="table__item-part">0</div>
+        </div>
+        <div class="table__item table__item-title2">
+          <div class="table__item-part">Итого</div>
+          <div id="initialMainTotal" class="table__item-part">0 </div>
+          <div id="totalMainTotal" class="table__item-part">0</div>
         </div>
       </div>
     </div>
